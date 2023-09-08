@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func div(x, y float64) (z float64) {
@@ -21,6 +22,10 @@ func sub(x, y float64) (z float64) {
 	z = x - y
 	return
 }
+func exp(x, y float64) (z float64) {
+	z = math.Pow(x, y)
+	return
+}
 
 func main() {
 	var num float64
@@ -30,7 +35,7 @@ func main() {
 		var sign string
 		var calc float64
 
-		fmt.Println("Type the operand symbol (+, -, *, /) and the number you want to operate the input on seperate lines ( ex: / (enter) 9 (enter) = /9 ): ")
+		fmt.Println("Type the operand symbol (+, -, *, /, ^) and the number you want to operate the input on seperate lines ( ex: / (enter) 9 (enter) = /9 ): ")
 		fmt.Scan(&sign, &calc)
 
 		switch sign {
@@ -43,8 +48,10 @@ func main() {
 			num = add(num, calc)
 		case "-":
 			num = sub(num, calc)
+		case "^":
+			num = exp(num, calc)
 		default:
-			fmt.Println("Sign unavailable, please try again with /, *, +, -")
+			fmt.Println("Sign unavailable, please try again with /, *, +, -, ^")
 			continue
 		}
 		fmt.Println("Current Total: ", num)
